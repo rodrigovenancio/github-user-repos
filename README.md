@@ -1,6 +1,6 @@
-# Github User Repos - Carrefour Challenge
+# GitHub User Repos - Carrefour Challenge
 
-A sinple Github app that loads user and repo information from [The GITHUB Api](https://api.github.com/) using:  
+A simple GitHub app that loads user and repo information from [The GITHUB Api](https://api.github.com/) using:  
  * ViewModel
  * LiveData
  * Compose
