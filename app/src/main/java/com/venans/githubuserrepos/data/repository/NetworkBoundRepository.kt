@@ -22,12 +22,12 @@ abstract class NetworkBoundRepository<RESULT, REQUEST> {
         val apiResponse = fetchFromRemote()
 
         // Parse body
-        val remoteUsers = apiResponse.body()
+        val body = apiResponse.body()
 
         // Check for response validation
-        if (apiResponse.isSuccessful && remoteUsers != null) {
+        if (apiResponse.isSuccessful && body != null) {
             // Save info into the persistence storage
-            saveRemoteData(remoteUsers)
+            saveRemoteData(body)
         } else {
             // Emit error state if something went wrong
             emit(Resource.Failed(apiResponse.message()))

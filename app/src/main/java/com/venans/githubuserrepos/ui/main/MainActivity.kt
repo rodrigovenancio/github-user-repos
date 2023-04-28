@@ -152,12 +152,14 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             imageView,
             imageView.transitionName
         )
-        val userId = user.id ?: run {
-            showToast("Unable to launch details")
+        val userId = user.id
+
+        val userLogin = user.login ?: run {
+            showToast("Unable to launch user details")
             return
         }
 
-        val intent = UserDetailsActivity.getStartIntent(this, userId)
+        val intent = UserDetailsActivity.getStartIntent(this, userId, userLogin)
         startActivity(intent, options.toBundle())
     }
 

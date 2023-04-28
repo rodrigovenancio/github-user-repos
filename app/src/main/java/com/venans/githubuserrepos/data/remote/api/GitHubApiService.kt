@@ -5,6 +5,7 @@ package com.venans.githubuserrepos.data.remote.api
 import com.venans.githubuserrepos.data.repository.UsersResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
  * Service to fetch GitHub data using.
@@ -13,5 +14,8 @@ interface GitHubApiService {
 
     @GET("/users")
     suspend fun getUsers(): Response<List<UsersResponse>>
+
+    @GET("/users/{user_login}")
+    suspend fun getUser(@Path("user_login") userLogin: String): Response<UsersResponse>
 
 }

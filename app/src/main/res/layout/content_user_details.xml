@@ -25,7 +25,6 @@
 
         <TextView
             android:id="@+id/user_url"
-            style="@style/UserUrlDetailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/user_login"
@@ -33,6 +32,43 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@tools:sample/full_names" />
+
+        <com.elyeproj.loaderviewlibrary.LoaderTextView
+            android:id="@+id/user_name"
+            style="@style/UserDetailNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/user_url"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@tools:sample/full_names"
+            app:width_weight="0.5"/>
+
+        <com.elyeproj.loaderviewlibrary.LoaderTextView
+            android:id="@+id/user_company"
+            style="@style/UserDetailNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@tools:sample/full_names"
+            app:width_weight="0.5"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repositoriesRecyclerView"
+            style="@style/UsersRecyclerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_animation_right_to_left"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_company"
+            tools:listitem="@layout/item_user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

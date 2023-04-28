@@ -37,7 +37,7 @@
     <style name="UsersRecyclerStyle">
         <item name="android:clipToPadding">false</item>
         <item name="android:scrollbars">vertical</item>
-        <item name="android:paddingTop">@dimen/dimen_4</item>
+        <item name="android:paddingTop">@dimen/dimen_1</item>
     </style>
 
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
@@ -50,7 +50,7 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
-    <style name="UserUrlDetailText">
+    <style name="UserDetailNameText">
         <item name="drawableLeftCompat">@drawable/ic_person</item>
         <item name="android:drawablePadding">@dimen/dimen_4</item>
         <item name="drawableTint">@android:color/secondary_text_dark</item>
