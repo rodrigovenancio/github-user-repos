@@ -6,7 +6,9 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityOptionsCompat
@@ -24,6 +26,7 @@ import com.venans.githubuserrepos.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
@@ -50,7 +53,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private fun initView() {
         mViewBinding.run {
             usersRecyclerView.adapter = mAdapter
-
             swipeRefreshLayout.setOnRefreshListener { getUsers() }
         }
     }
@@ -62,10 +64,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                     when (state) {
                         is State.Loading -> showLoading(true)
                         is State.Success -> {
-                            if (state.data.isNotEmpty()) {
-                                mAdapter.submitList(state.data.toMutableList())
-                                showLoading(false)
-                            }
+                            mAdapter.submitList(state.data.toMutableList())
+                            showLoading(false)
+
+                            if (state.data.isEmpty())
+                                mViewBinding.listEmptyState.visibility = View.VISIBLE
+                            else
+                                mViewBinding.listEmptyState.visibility = View.GONE
                         }
                         is State.Error -> {
                             showToast(state.message)
@@ -78,6 +83,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     private fun getUsers() = mViewModel.getUsers()
+    private fun searchUsers(query: String) = mViewModel.searchUsers(query)
 
     private fun showLoading(isLoading: Boolean) {
         mViewBinding.swipeRefreshLayout.isRefreshing = isLoading
@@ -117,6 +123,27 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
+
+        val searchViewItem = menu!!.findItem(R.id.search)
+        val searchView = searchViewItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                showLoading(true)
+                searchUsers(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+
+        searchView.setOnCloseListener {
+            getUsers()
+            false
+        }
+
         return true
     }
 
@@ -138,10 +165,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
             else -> true
         }
-    }
-
-    override fun onBackPressed() {
-
     }
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)

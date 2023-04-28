@@ -29,4 +29,12 @@ class MainViewModel @Inject constructor(private val userRepository: UserReposito
                 .collect { state -> _users.value = state }
         }
     }
+
+    fun searchUsers(query: String) {
+        viewModelScope.launch {
+            userRepository.searchUsers(query)
+                .map { resource -> State.fromResource(resource) }
+                .collect { state -> _users.value = state }
+        }
+    }
 }

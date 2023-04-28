@@ -63,11 +63,11 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
     private fun initUser() {
         mViewModel.user.observe(this) { user ->
             mViewBinding.userContent.apply {
-                userLogin.text = user.login
+                userLoginName.text = user.login
                 userUrl.text = user.url
                 user.login?.let {
-                    if (userName.text.isBlank()) getUserDetailedInfo(it)
-                    if (mAdapter.itemCount == 0) getRepos(it)
+                    getUserDetailedInfo(it)
+                    getRepos(it)
                 }
             }
             mViewBinding.userAvatarImage.load(user.avatarUrl)

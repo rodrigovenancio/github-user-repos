@@ -15,7 +15,7 @@ import com.venans.githubuserrepos.model.User
 class UserViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(user: User, onItemClicked: (User, ImageView) -> Unit) {
-        binding.userLogin.text = user.login
+        binding.userLoginName.text = user.login
         binding.userUrl.text = user.url
         binding.userAvatarImage.load(user.avatarUrl) {
             placeholder(R.drawable.ic_photo)
