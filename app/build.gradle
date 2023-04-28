@@ -24,16 +24,14 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            buildConfigField("String", "BASE_URL", "\"https://api.nytimes.com\"")
-            buildConfigField("String", "API_KEY", "\"NklDh6oq4hHAAK1v8nH8j3Ggc1PagBZG\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com\"")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             testCoverageEnabled true
             minifyEnabled false
-            buildConfigField("String", "BASE_URL", "\"https://api.nytimes.com\"")
-            buildConfigField("String", "API_KEY", "\"NklDh6oq4hHAAK1v8nH8j3Ggc1PagBZG\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.github.com\"")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
