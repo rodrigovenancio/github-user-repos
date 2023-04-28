@@ -1,7 +1,7 @@
 package  com.venans.githubuserrepos.di
 
-import com.venans.githubuserrepos.data.repository.DefaultUserRepository
-import com.venans.githubuserrepos.data.repository.UserRepository
+import com.venans.githubuserrepos.data.repository.DefaultRepoRepository
+import com.venans.githubuserrepos.data.repository.RepoRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,9 +10,9 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 
 @InstallIn(ActivityRetainedComponent::class)
 @Module
-abstract class UserRepositoryModule {
+abstract class RepoRepositoryModule {
 
     @ActivityRetainedScoped
     @Binds
-    abstract fun bindUserRepository(repository: DefaultUserRepository): UserRepository
+    abstract fun bindRepoRepository(repository: DefaultRepoRepository): RepoRepository
 }

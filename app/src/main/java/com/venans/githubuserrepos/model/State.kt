@@ -1,6 +1,6 @@
 package com.venans.githubuserrepos.model
 
-import com.venans.githubuserrepos.data.repository.Resource
+import com.venans.githubuserrepos.data.repository.base.Resource
 
 
 /**

@@ -112,4 +112,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // Loader View
+    implementation 'io.github.elye:loaderviewlibrary:3.0.0'
+
 }

@@ -14,7 +14,6 @@ import javax.inject.Inject
 /**
  * ViewModel for [MainActivity]
  */
-@ExperimentalCoroutinesApi
 @HiltViewModel
 class MainViewModel @Inject constructor(private val userRepository: UserRepository) :
     ViewModel() {

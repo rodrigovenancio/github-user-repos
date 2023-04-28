@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.venans.githubuserrepos.data.local.dao.ReposDao
 import com.venans.githubuserrepos.data.local.dao.UsersDao
+import com.venans.githubuserrepos.model.Repo
 import com.venans.githubuserrepos.model.User
 
 /**
@@ -12,7 +14,7 @@ import com.venans.githubuserrepos.model.User
  * It provides DAO [UsersDao] by using method [getUsersDao]
  */
 @Database(
-    entities = [User::class],
+    entities = [User::class, Repo::class],
     version = DatabaseMigrations.DB_VERSION
 )
 abstract class GitHubDatabase : RoomDatabase() {
@@ -21,6 +23,11 @@ abstract class GitHubDatabase : RoomDatabase() {
      * @return [UsersDao] Users Data Access Object.
      */
     abstract fun getUsersDao(): UsersDao
+
+    /**
+     * @return [ReposDao] Users Data Access Object.
+     */
+    abstract fun getReposDao(): ReposDao
 
     companion object {
         const val DB_NAME = "github_users_database"

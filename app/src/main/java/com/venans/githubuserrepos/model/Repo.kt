@@ -11,7 +11,6 @@ class Repo (
     val id: Long,
     val name: String?,
     val fullName: String?,
-    val private: Boolean,
     val description: String?,
     val htmlUrl: String?
 
