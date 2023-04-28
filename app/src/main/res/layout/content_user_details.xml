@@ -13,7 +13,7 @@
         android:padding="@dimen/dimen_16">
 
         <TextView
-            android:id="@+id/user_login"
+            android:id="@+id/user_login_name"
             style="@style/UserTitleDetailText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:id="@+id/user_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/user_login"
+            app:layout_constraintTop_toBottomOf="@id/user_login_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +60,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reposRecyclerView"
             style="@style/ReposRecyclerStyle"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="0dp"
             android:layout_height="@dimen/repo_recycler_view_fixed_height"
             android:layoutAnimation="@anim/layout_animation_right_to_left"
@@ -68,13 +69,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_company"
-            tools:listitem="@layout/item_user" />
+            tools:listitem="@layout/item_user"
+            android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/progress_circular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
+            android:layout_marginTop="@dimen/dimen_64"
             app:layout_constraintTop_toTopOf="@+id/reposRecyclerView"
             app:layout_constraintStart_toStartOf="@id/reposRecyclerView"
             app:layout_constraintEnd_toEndOf="@id/reposRecyclerView"

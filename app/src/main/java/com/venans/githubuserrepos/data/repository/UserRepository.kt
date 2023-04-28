@@ -4,6 +4,7 @@ import androidx.annotation.MainThread
 import com.venans.githubuserrepos.data.local.dao.UsersDao
 import com.venans.githubuserrepos.data.remote.api.GitHubApiService
 import com.venans.githubuserrepos.data.repository.base.NetworkBoundRepository
+import com.venans.githubuserrepos.data.repository.base.NetworkOnlyRepository
 import com.venans.githubuserrepos.data.repository.base.Resource
 import com.venans.githubuserrepos.model.User
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +16,7 @@ interface UserRepository {
     fun getAllUsers(): Flow<Resource<List<User>>>
     fun getUserById(id: Long): Flow<User>
     fun getUserDetailedInfo(userLogin: String): Flow<Resource<User>>
+    fun searchUsers(query: String): Flow<Resource<List<User>>>
 }
 
 /**
@@ -48,7 +50,7 @@ class DefaultUserRepository @Inject constructor(
                         return@let Response.success(users)
                     } as Response<List<User>>
                 } catch (e: Exception) {
-                    return  Response.error(result.code(),result.errorBody())
+                    return  Response.error(result.code(), result.errorBody())
                 }
             }
         }.asFlow()
@@ -92,9 +94,30 @@ class DefaultUserRepository @Inject constructor(
                         return@let Response.success(data)
                     } as Response<User>
                 } catch (e: Exception) {
-                    return  Response.error(result.code(),result.errorBody())
+                    return  Response.error(result.code(), result.errorBody())
                 }
             }
         }.asFlow()
     }
+
+    override fun searchUsers(query: String): Flow<Resource<List<User>>> {
+        return object : NetworkOnlyRepository<List<User>, List<User>>() {
+
+            override suspend fun fetchFromRemote(): Response<List<User>> {
+                var  result =  gitHubApiService.searchUsers(query)
+                try {
+                    return result.let {
+                        val inwrap = it.body()!!.items as List<UserResponse>
+                        val users = inwrap.map { user ->
+                            mapUserDataItem(user)
+                        }
+                        return@let Response.success(users)
+                    } as Response<List<User>>
+                } catch (e: Exception) {
+                    return  Response.error(result.code(), result.errorBody())
+                }
+            }
+        }.asFlow()
+    }
+
 }

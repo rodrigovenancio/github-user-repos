@@ -6,6 +6,7 @@
     <dimen name="dimen_4">4dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
     <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_64">64dp</dimen>
 
     <dimen name="app_bar_height">192dp</dimen>
     <dimen name="repo_recycler_view_fixed_height">1000dp</dimen>

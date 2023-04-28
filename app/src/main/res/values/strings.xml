@@ -5,4 +5,7 @@
     <string name="text_user_header">User Header</string>
     <string name="option_yes">Yes</string>
     <string name="option_no">No</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search for username</string>
+    <string name="user_list_empty">No users found.</string>
 </resources>

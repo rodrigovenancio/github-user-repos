@@ -63,7 +63,7 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
     private fun initUser() {
         mViewModel.user.observe(this) { user ->
             mViewBinding.userContent.apply {
-                userLogin.text = user.login
+                userLoginName.text = user.login
                 userUrl.text = user.url
                 user.login?.let {
                     getUserDetailedInfo(it)
@@ -91,6 +91,7 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
                         is State.Success -> {
                             if (state.data.isNotEmpty()) {
                                 mAdapter.submitList(state.data.toMutableList())
+                                mViewBinding.userContent.reposRecyclerView.visibility = View.VISIBLE
                                 mViewBinding.userContent.progressCircular.visibility = View.GONE
                             }
                         }
