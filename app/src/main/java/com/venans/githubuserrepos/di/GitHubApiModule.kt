@@ -1,5 +1,6 @@
 package  com.venans.githubuserrepos.di
 
+import com.venans.githubuserrepos.BuildConfig
 import com.venans.githubuserrepos.data.remote.api.GitHubApiService
 import dagger.Module
 import dagger.Provides
