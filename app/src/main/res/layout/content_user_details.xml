@@ -60,6 +60,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reposRecyclerView"
             style="@style/ReposRecyclerStyle"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="0dp"
             android:layout_height="@dimen/repo_recycler_view_fixed_height"
             android:layoutAnimation="@anim/layout_animation_right_to_left"

@@ -66,8 +66,8 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
                 userLogin.text = user.login
                 userUrl.text = user.url
                 user.login?.let {
-                    getUserDetailedInfo(it)
-                    getRepos(it)
+                    if (userName.text.isBlank()) getUserDetailedInfo(it)
+                    if (mAdapter.itemCount == 0) getRepos(it)
                 }
             }
             mViewBinding.userAvatarImage.load(user.avatarUrl)
