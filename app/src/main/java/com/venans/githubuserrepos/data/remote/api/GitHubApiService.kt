@@ -12,6 +12,6 @@ import retrofit2.http.GET
 interface GitHubApiService {
 
     @GET("/users")
-    suspend fun getUsers(): Response<UsersResponse>
+    suspend fun getUsers(): Response<List<UsersResponse>>
 
 }

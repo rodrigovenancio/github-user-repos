@@ -18,7 +18,7 @@ import com.venans.githubuserrepos.model.User
 abstract class GitHubDatabase : RoomDatabase() {
 
     /**
-     * @return [UsersDao] NY Articles Data Access Object.
+     * @return [UsersDao] Users Data Access Object.
      */
     abstract fun getUsersDao(): UsersDao
 

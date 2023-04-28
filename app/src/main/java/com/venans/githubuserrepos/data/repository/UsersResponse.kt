@@ -17,5 +17,6 @@ class UsersResponse {
     var company: String? = null
     @SerializedName("public_repos")
     var publicReposCount: Int = 0
+    var url: String? = null
 
 }

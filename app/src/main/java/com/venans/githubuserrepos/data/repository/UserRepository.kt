@@ -25,7 +25,7 @@ class DefaultUserRepository @Inject constructor(
 ) : UserRepository {
 
     /**
-     * Fetched the posts from network and stored it in database. At the end, data from persistence
+     * Fetched the users from network and stored it in database. At the end, data from persistence
      * storage is fetched and emitted.
      */
     override fun getAllUsers(): Flow<Resource<List<User>>> {
@@ -39,13 +39,32 @@ class DefaultUserRepository @Inject constructor(
                 var  result =  nyNewsService.getUsers()
                 try {
                     return result.let {
-                        return@let Response.success(it)
+                        var data = mapUsersDataItem(it)
+                        return@let Response.success(data)
                     } as Response<List<User>>
                 } catch (e: Exception) {
                     return  Response.error(result.code(),result.errorBody())
                 }
             }
         }.asFlow()
+    }
+
+    fun mapUsersDataItem(response: Response<List<UsersResponse>>):List<User> {
+        val inwrap = response.body() as List<UsersResponse>
+        val users = inwrap.map {
+            User(
+                it.id,
+                it.login,
+                it.avatarUrl,
+                it.name,
+                it.location,
+                it.company,
+                it.publicReposCount,
+                it.url
+            )
+        }
+
+        return users
     }
 
     /**
