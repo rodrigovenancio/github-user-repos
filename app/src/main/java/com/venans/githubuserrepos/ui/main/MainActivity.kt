@@ -18,6 +18,7 @@ import com.venans.githubuserrepos.databinding.ActivityMainBinding
 import com.venans.githubuserrepos.model.State
 import com.venans.githubuserrepos.model.User
 import com.venans.githubuserrepos.ui.base.BaseActivity
+import com.venans.githubuserrepos.ui.details.UserDetailsActivity
 import com.venans.githubuserrepos.ui.main.adapter.UserListAdapter
 import com.venans.githubuserrepos.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -155,8 +156,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             showToast("Unable to launch details")
             return
         }
-        /*val intent = Activity.getStartIntent(this, userId)
-        startActivity(intent, options.toBundle())*/
+
+        val intent = UserDetailsActivity.getStartIntent(this, userId)
+        startActivity(intent, options.toBundle())
     }
 
     companion object {
