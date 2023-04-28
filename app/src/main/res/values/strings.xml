@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">GithubUserRepos</string>
+    <string name="app_name">GitHub</string>
+    <string name="text_no_connectivity">No connection.</string>
+    <string name="text_connectivity">Back online.</string>
+    <string name="text_user_header">User Header</string>
+    <string name="option_yes">Yes</string>
+    <string name="option_no">No</string>
 </resources>
