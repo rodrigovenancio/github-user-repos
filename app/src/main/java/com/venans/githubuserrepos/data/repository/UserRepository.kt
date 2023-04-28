@@ -39,7 +39,7 @@ class DefaultUserRepository @Inject constructor(
                 var  result =  gitHubApiService.getUsers()
                 try {
                     return result.let {
-                        val inwrap = it.body() as List<UsersResponse>
+                        val inwrap = it.body() as List<UserResponse>
                         val users = inwrap.map { user ->
                             mapUserDataItem(user)
                         }
@@ -52,7 +52,7 @@ class DefaultUserRepository @Inject constructor(
         }.asFlow()
     }
 
-    fun mapUserDataItem(response: UsersResponse): User {
+    fun mapUserDataItem(response: UserResponse): User {
         return User(
             response.id,
             response.login,

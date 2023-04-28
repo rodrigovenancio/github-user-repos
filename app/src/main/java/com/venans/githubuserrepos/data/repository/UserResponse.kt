@@ -6,7 +6,7 @@ Dubai, UAE.
  */
 import com.google.gson.annotations.SerializedName
 
-class UsersResponse {
+class UserResponse {
 
     var login: String? = null
     var id: Long = 0
