@@ -58,8 +58,8 @@
             app:width_weight="0.5"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/repositoriesRecyclerView"
-            style="@style/UsersRecyclerStyle"
+            android:id="@+id/reposRecyclerView"
+            style="@style/ReposRecyclerStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layoutAnimation="@anim/layout_animation_right_to_left"
@@ -69,6 +69,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_company"
             tools:listitem="@layout/item_user" />
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:layout_constraintTop_toTopOf="@+id/reposRecyclerView"
+            app:layout_constraintStart_toStartOf="@id/reposRecyclerView"
+            app:layout_constraintEnd_toEndOf="@id/reposRecyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/reposRecyclerView"
+            tools:layout_editor_absoluteX="16dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,8 @@ import com.venans.githubuserrepos.databinding.ActivityUserDetailsBinding
 import com.venans.githubuserrepos.model.State
 import com.venans.githubuserrepos.model.User
 import com.venans.githubuserrepos.ui.base.BaseActivity
+import com.venans.githubuserrepos.ui.details.adapter.RepoListAdapter
+import com.venans.githubuserrepos.ui.main.adapter.UserListAdapter
 import com.venans.githubuserrepos.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -28,6 +31,8 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
     lateinit var viewModelFactory: UserDetailsViewModel.UserDetailsViewModelFactory
 
     private fun getUserDetailedInfo(userLogin: String) = mViewModel.getUser(userLogin)
+
+    private val mAdapter = RepoListAdapter()
 
     override val mViewModel: UserDetailsViewModel by viewModels {
         val userId = intent.extras?.getLong(KEY_USER_ID)
@@ -45,7 +50,9 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
         setSupportActionBar(mViewBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        initView()
         observeUser()
+        observeRepos()
     }
 
     override fun onStart() {
@@ -58,9 +65,42 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
             mViewBinding.userContent.apply {
                 userLogin.text = user.login
                 userUrl.text = user.url
-                user.login?.let { getUserDetailedInfo(it) }
+                user.login?.let {
+                    getUserDetailedInfo(it)
+                    getRepos(it)
+                }
             }
             mViewBinding.userAvatarImage.load(user.avatarUrl)
+        }
+    }
+
+    private fun initView() {
+        mViewBinding.run {
+            userContent.reposRecyclerView.adapter = mAdapter
+        }
+    }
+
+    private fun getRepos(userLogin: String) = mViewModel.getRepos(userLogin)
+
+    private fun observeRepos() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mViewModel.repos.collect { state ->
+                    when (state) {
+                        is State.Loading -> mViewBinding.userContent.progressCircular.visibility = View.VISIBLE
+                        is State.Success -> {
+                            if (state.data.isNotEmpty()) {
+                                mAdapter.submitList(state.data.toMutableList())
+                                mViewBinding.userContent.progressCircular.visibility = View.GONE
+                            }
+                        }
+                        is State.Error -> {
+                            showToast(state.message)
+                            mViewBinding.userContent.progressCircular.visibility = View.GONE
+                        }
+                    }
+                }
+            }
         }
     }
 
