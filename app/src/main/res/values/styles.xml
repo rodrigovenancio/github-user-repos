@@ -13,6 +13,8 @@
     <style name="UserUrlText">
         <item name="android:layout_marginStart">@dimen/dimen_16</item>
         <item name="android:layout_marginTop">@dimen/dimen_8</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_16</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_16</item>
     </style>
 
     <style name="UserAvatarImage">
