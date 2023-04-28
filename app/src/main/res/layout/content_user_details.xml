@@ -47,7 +47,7 @@
 
         <com.elyeproj.loaderviewlibrary.LoaderTextView
             android:id="@+id/user_company"
-            style="@style/UserDetailNameText"
+            style="@style/UserDetailCompanyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/user_name"
