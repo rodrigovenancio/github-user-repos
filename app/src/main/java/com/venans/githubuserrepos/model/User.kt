@@ -8,13 +8,14 @@ import com.venans.githubuserrepos.model.User.Companion.TABLE_NAME
 class User (
 
     @PrimaryKey
-    val login: String?,
     val id: Long,
+    val login: String?,
     val avatarUrl: String?,
     val name: String?,
     val location: String?,
     val company: String?,
-    val publicRepos: Int
+    val publicRepos: Int,
+    val url: String?
 
 ) {
     companion object {
