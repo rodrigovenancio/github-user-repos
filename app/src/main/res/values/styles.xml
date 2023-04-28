@@ -62,7 +62,7 @@
 
     <style name="UserDetailNameText">
         <item name="drawableLeftCompat">@drawable/ic_person</item>
-        <item name="android:drawablePadding">@dimen/dimen_4</item>
+        <item name="android:drawablePadding">@dimen/dimen_8</item>
         <item name="drawableTint">@android:color/secondary_text_dark</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginTop">@dimen/dimen_8</item>
@@ -70,7 +70,7 @@
 
     <style name="UserDetailCompanyText">
         <item name="drawableLeftCompat">@drawable/ic_company</item>
-        <item name="android:drawablePadding">@dimen/dimen_4</item>
+        <item name="android:drawablePadding">@dimen/dimen_8</item>
         <item name="drawableTint">@android:color/secondary_text_dark</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginTop">@dimen/dimen_8</item>
