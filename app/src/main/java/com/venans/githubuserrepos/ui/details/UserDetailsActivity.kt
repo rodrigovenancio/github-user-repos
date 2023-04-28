@@ -91,6 +91,7 @@ class UserDetailsActivity : BaseActivity<UserDetailsViewModel, ActivityUserDetai
                         is State.Success -> {
                             if (state.data.isNotEmpty()) {
                                 mAdapter.submitList(state.data.toMutableList())
+                                mViewBinding.userContent.reposRecyclerView.visibility = View.VISIBLE
                                 mViewBinding.userContent.progressCircular.visibility = View.GONE
                             }
                         }
