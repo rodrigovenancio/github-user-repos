@@ -20,4 +20,8 @@ class GitHubDatabaseModule {
     @Provides
     fun provideUsersDao(database: GitHubDatabase) = database.getUsersDao()
 
+    @Singleton
+    @Provides
+    fun provideReposDao(database: GitHubDatabase) = database.getReposDao()
+
 }
