@@ -1,4 +1,4 @@
-package com.venans.githubuserrepos.data.repository
+package com.venans.githubuserrepos.data.repository.base
 
 sealed class Resource<T> {
     class Success<T>(val data: T) : Resource<T>()

@@ -1,4 +1,4 @@
-package com.venans.githubuserrepos.data.repository
+package com.venans.githubuserrepos.data.repository.base
 
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread

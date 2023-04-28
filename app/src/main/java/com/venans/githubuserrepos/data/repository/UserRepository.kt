@@ -3,6 +3,8 @@ package com.venans.githubuserrepos.data.repository
 import androidx.annotation.MainThread
 import com.venans.githubuserrepos.data.local.dao.UsersDao
 import com.venans.githubuserrepos.data.remote.api.GitHubApiService
+import com.venans.githubuserrepos.data.repository.base.NetworkBoundRepository
+import com.venans.githubuserrepos.data.repository.base.Resource
 import com.venans.githubuserrepos.model.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
